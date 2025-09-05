@@ -21,4 +21,36 @@ public extension RichTextAttributes {
         get { self[.underlineStyle] as? Int == 1 }
         set { self[.underlineStyle] = newValue ? 1 : 0 }
     }
+
+    ///  Whether or not the attributes defines an unordered list.
+    var isUnorderedList: Bool {
+        get { 
+            guard let textList = self[.textList] as? NSTextList else { return false }
+            return textList.markerFormat == .bullet
+        }
+        set {
+            if newValue {
+                let textList = NSTextList(markerFormat: .bullet, options: 0)
+                self[.textList] = textList
+            } else {
+                self.removeValue(forKey: .textList)
+            }
+        }
+    }
+
+    ///  Whether or not the attributes defines an ordered list.
+    var isOrderedList: Bool {
+        get { 
+            guard let textList = self[.textList] as? NSTextList else { return false }
+            return textList.markerFormat == .decimal
+        }
+        set {
+            if newValue {
+                let textList = NSTextList(markerFormat: .decimal, options: 0)
+                self[.textList] = textList
+            } else {
+                self.removeValue(forKey: .textList)
+            }
+        }
+    }
 }

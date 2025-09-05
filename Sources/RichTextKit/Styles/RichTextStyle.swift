@@ -22,6 +22,8 @@ public enum RichTextStyle: String, CaseIterable, Identifiable, RichTextLabelValu
     case italic
     case underlined
     case strikethrough
+    case unorderedList
+    case orderedList
 }
 
 public extension RichTextStyle {
@@ -47,6 +49,8 @@ public extension RichTextStyle {
         case .italic: .richTextStyleItalic
         case .strikethrough: .richTextStyleStrikethrough
         case .underlined: .richTextStyleUnderline
+        case .unorderedList: .richTextStyleUnorderedList
+        case .orderedList: .richTextStyleOrderedList
         }
     }
 
@@ -62,6 +66,8 @@ public extension RichTextStyle {
         case .italic: .styleItalic
         case .underlined: .styleUnderlined
         case .strikethrough: .styleStrikethrough
+        case .unorderedList: .styleUnorderedList
+        case .orderedList: .styleOrderedList
         }
     }
 
@@ -80,6 +86,8 @@ public extension RichTextStyle {
         var styles = traits?.enabledRichTextStyles ?? []
         if attributes?.isStrikethrough == true { styles.append(.strikethrough) }
         if attributes?.isUnderlined == true { styles.append(.underlined) }
+        if attributes?.isUnorderedList == true { styles.append(.unorderedList) }
+        if attributes?.isOrderedList == true { styles.append(.orderedList) }
         return styles
     }
 }
@@ -112,6 +120,8 @@ public extension RichTextStyle {
         case .italic: .traitItalic
         case .strikethrough: nil
         case .underlined: nil
+        case .unorderedList: nil
+        case .orderedList: nil
         }
     }
 }
@@ -127,6 +137,8 @@ public extension RichTextStyle {
         case .italic: .italic
         case .strikethrough: nil
         case .underlined: nil
+        case .unorderedList: nil
+        case .orderedList: nil
         }
     }
 }

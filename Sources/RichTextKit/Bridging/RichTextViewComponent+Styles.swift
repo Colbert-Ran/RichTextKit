@@ -17,6 +17,8 @@ public extension RichTextViewComponent {
         var styles = traits?.enabledRichTextStyles ?? []
         if attributes.isStrikethrough { styles.append(.strikethrough) }
         if attributes.isUnderlined { styles.append(.underlined) }
+        if attributes.isUnorderedList { styles.append(.unorderedList) }
+        if attributes.isOrderedList { styles.append(.orderedList) }
         return styles
     }
 
@@ -42,6 +44,18 @@ public extension RichTextViewComponent {
             setRichTextAttribute(.underlineStyle, to: value)
         case .strikethrough:
             setRichTextAttribute(.strikethroughStyle, to: value)
+        case .unorderedList:
+            // 如果启用无序列表，先关闭有序列表
+            if newValue {
+                setRichTextStyle(.orderedList, to: false)
+            }
+            setRichTextAttribute(.textList, to: newValue ? NSTextList(markerFormat: .bullet, options: 0) : nil)
+        case .orderedList:
+            // 如果启用有序列表，先关闭无序列表
+            if newValue {
+                setRichTextStyle(.unorderedList, to: false)
+            }
+            setRichTextAttribute(.textList, to: newValue ? NSTextList(markerFormat: .decimal, options: 0) : nil)
         }
     }
 

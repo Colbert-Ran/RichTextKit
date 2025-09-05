@@ -74,6 +74,8 @@
 "styleItalic" = "Italic";
 "styleStrikethrough" = "Strikethrough";
 "styleUnderlined" = "Underline";
+"styleUnorderedList" = "Bullet List";
+"styleOrderedList" = "Numbered List";
 
 "superscript" = "Superscript";
 "superscriptIncrease" = "Increase";
