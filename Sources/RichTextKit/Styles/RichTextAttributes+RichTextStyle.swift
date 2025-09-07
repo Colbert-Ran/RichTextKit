@@ -28,10 +28,10 @@ public extension RichTextAttributes {
 
     ///  Whether or not the attributes defines an unordered list.
     var isUnorderedList: Bool {
-        get { 
+        get {
             #if macOS
             guard let textList = self[.textList] as? NSTextList else { return false }
-            return textList.markerFormat == .bullet
+            return textList.markerFormat == "{disc}"
             #else
             return false
             #endif
@@ -39,7 +39,7 @@ public extension RichTextAttributes {
         set {
             #if macOS
             if newValue {
-                let textList = NSTextList(markerFormat: .bullet, options: 0)
+                let textList = NSTextList(markerFormat: "{disc}", options: 0)
                 self[.textList] = textList
             } else {
                 self.removeValue(forKey: .textList)

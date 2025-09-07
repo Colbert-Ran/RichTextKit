@@ -54,7 +54,7 @@ public extension RichTextViewComponent {
                 setRichTextStyle(.orderedList, to: false)
             }
             #if macOS
-            setRichTextAttribute(.textList, to: newValue ? NSTextList(markerFormat: .bullet, options: 0) : nil)
+            setRichTextAttribute(.textList, to: newValue ? NSTextList(markerFormat: "{disc}", options: 0) : nil)
             #endif
         case .orderedList:
             // 如果启用有序列表，先关闭无序列表
