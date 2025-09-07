@@ -8,6 +8,10 @@
 
 import Foundation
 
+#if macOS
+import AppKit
+#endif
+
 public extension RichTextViewComponent {
 
     /// Get all styles.
@@ -49,13 +53,17 @@ public extension RichTextViewComponent {
             if newValue {
                 setRichTextStyle(.orderedList, to: false)
             }
+            #if macOS
             setRichTextAttribute(.textList, to: newValue ? NSTextList(markerFormat: .bullet, options: 0) : nil)
+            #endif
         case .orderedList:
             // 如果启用有序列表，先关闭无序列表
             if newValue {
                 setRichTextStyle(.unorderedList, to: false)
             }
+            #if macOS
             setRichTextAttribute(.textList, to: newValue ? NSTextList(markerFormat: .decimal, options: 0) : nil)
+            #endif
         }
     }
 
