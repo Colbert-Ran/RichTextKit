@@ -50,10 +50,10 @@ public extension RichTextAttributes {
 
     ///  Whether or not the attributes defines an ordered list.
     var isOrderedList: Bool {
-        get { 
+        get {
             #if macOS
             guard let textList = self[.textList] as? NSTextList else { return false }
-            return textList.markerFormat == .decimal
+            return textList.markerFormat == "decimal"
             #else
             return false
             #endif
@@ -61,7 +61,7 @@ public extension RichTextAttributes {
         set {
             #if macOS
             if newValue {
-                let textList = NSTextList(markerFormat: .decimal, options: 0)
+                let textList = NSTextList(markerFormat: "decimal", options: 0)
                 self[.textList] = textList
             } else {
                 self.removeValue(forKey: .textList)

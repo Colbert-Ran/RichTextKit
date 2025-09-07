@@ -62,7 +62,7 @@ public extension RichTextViewComponent {
                 setRichTextStyle(.unorderedList, to: false)
             }
             #if macOS
-            setRichTextAttribute(.textList, to: newValue ? NSTextList(markerFormat: .decimal, options: 0) : nil)
+            setRichTextAttribute(.textList, to: newValue ? NSTextList(markerFormat: "decimal", options: 0) : nil)
             #endif
         }
     }
